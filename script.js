@@ -68,7 +68,7 @@ function showBirthdayCelebration() {
   }
 
   function animate() {
-    context.fillStyle = "rgba(69, 44, 58, .18)";
+    context.fillStyle = "rgba(255, 250, 247, .3)";
     context.fillRect(0, 0, canvas.width, canvas.height);
 
     particles.forEach((particle) => {

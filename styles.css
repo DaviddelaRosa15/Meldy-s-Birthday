@@ -1,4 +1,5 @@
 :root {
+  color-scheme: light;
   --cream: #fffaf7;
   --peach: #f9d6c6;
   --blush: #f6b6ac;
@@ -74,14 +75,14 @@ h1 em, h2 em { color: var(--coral); font-style: italic; }
 .signature span { color: var(--coral); }
 .footer { background: var(--plum); color: rgba(255,255,255,.7); font-size: .7rem; letter-spacing: .1em; padding: 25px; text-align: center; text-transform: uppercase; }
 .footer span { color: var(--coral); }
-.birthday-celebration { align-items: center; background: rgba(69, 44, 58, .96); display: none; inset: 0; justify-content: center; overflow: hidden; position: fixed; z-index: 10; }
+.birthday-celebration { align-items: center; background: rgba(255, 250, 247, .96); display: none; inset: 0; justify-content: center; overflow: hidden; position: fixed; z-index: 10; }
 .birthday-celebration.is-visible { display: flex; }
 #fireworks { height: 100%; inset: 0; position: absolute; width: 100%; }
-.birthday-message { animation: birthday-message-in .9s ease-out both; color: white; max-width: 580px; padding: 30px; position: relative; text-align: center; }
+.birthday-message { animation: birthday-message-in .9s ease-out both; color: var(--plum); max-width: 580px; padding: 30px; position: relative; text-align: center; }
 .birthday-message .eyebrow { color: var(--blush); }
 .birthday-message h2 { font-size: clamp(3rem, 8vw, 6rem); }
 .birthday-message h2 em { color: var(--peach); }
-.birthday-message > p:not(.eyebrow) { color: rgba(255,255,255,.8); font-size: 1rem; line-height: 1.8; margin: 28px auto; max-width: 440px; }
+.birthday-message > p:not(.eyebrow) { color: var(--muted); font-size: 1rem; line-height: 1.8; margin: 28px auto; max-width: 440px; }
 .birthday-message > span { color: var(--coral); font-size: 1.8rem; }
 @keyframes birthday-message-in { from { opacity: 0; transform: translateY(24px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
