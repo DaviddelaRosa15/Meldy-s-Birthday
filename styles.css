@@ -68,8 +68,8 @@ h1 em, h2 em { color: var(--coral); font-style: italic; }
 .photo-note { color: var(--muted); font-size: .74rem; margin: 26px auto 0; max-width: 1180px; text-align: right; }
 .letter-section { background: #f9ded4; }
 .letter-card { background: var(--cream); margin: auto; max-width: 760px; padding: clamp(42px, 8vw, 90px); position: relative; text-align: center; }
-.letter-card::after { bottom: 30px; color: var(--blush); content: "”"; font: 7rem/0 var(--serif); position: absolute; right: 7%; }
-.letter-card__mark { color: var(--blush); font: 7rem/0 var(--serif); left: 7%; position: absolute; top: 62px; }
+.letter-card::after { bottom: 30px; color: var(--blush); content: "“"; font: 7rem/1 var(--serif); position: absolute; right: 7%; transform: rotate(180deg); }
+.letter-card__mark { color: var(--blush); font: 7rem/1 var(--serif); left: 7%; position: absolute; top: 42px; }
 .letter-card h2 { font-size: clamp(2.4rem, 5vw, 4rem); }
 .letter-card__text { color: var(--muted); font-size: .93rem; line-height: 1.9; margin: 32px auto; max-width: 550px; }
 .signature { font: 1rem var(--serif); line-height: 1.7; margin: 0; }
@@ -104,5 +104,8 @@ h1 em, h2 em { color: var(--coral); font-style: italic; }
   .carousel { margin-top: 35px; }
   .memory-card { flex-basis: 78vw; }
   .photo-note { text-align: left; }
+  .letter-card { padding-bottom: 125px; padding-top: 125px; }
+  .letter-card__mark { font-size: 5.5rem; top: 24px; }
+  .letter-card::after { bottom: 24px; font-size: 5.5rem; right: 6%; }
   .birthday-message { padding: 22px; }
 }
