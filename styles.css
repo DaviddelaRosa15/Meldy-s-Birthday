@@ -54,10 +54,14 @@ h1 em, h2 em { color: var(--coral); font-style: italic; }
 .memories-section { background: #fff; }
 .section-heading--row { align-items: end; display: flex; justify-content: space-between; max-width: 1180px; margin: auto; }
 .carousel-controls { display: flex; gap: 10px; }
-.carousel-button { background: transparent; border: 1px solid var(--line); border-radius: 50%; color: var(--plum); cursor: pointer; height: 44px; transition: .2s; width: 44px; }
-.carousel-button:hover { background: var(--plum); color: #fff; }
+.carousel-button { align-items: center; appearance: none; background: transparent; border: 1px solid var(--line); border-radius: 50%; color: var(--plum); cursor: pointer; display: inline-flex; height: 44px; justify-content: center; line-height: 1; padding: 0; transition: background-color .2s, color .2s, opacity .2s; width: 44px; }
+.carousel-button:focus-visible:not(:disabled) { background: var(--plum); color: #fff; }
+.carousel-button:disabled { cursor: default; }
+@media (hover: hover) {
+  .carousel-button:hover:not(:disabled) { background: var(--plum); color: #fff; }
+}
 .carousel { margin: 60px auto 0; max-width: 1180px; overflow: hidden; }
-.carousel__track { display: flex; gap: 22px; transition: transform .45s ease; }
+.carousel__track { display: flex; gap: 22px; touch-action: pan-y; transition: transform .32s cubic-bezier(.22, .61, .36, 1); will-change: transform; }
 .memory-card { flex: 0 0 min(38vw, 410px); margin-top: 40px; position: relative; }
 .memory-card--tall { margin-top: 0; }
 .memory-card img { aspect-ratio: 1 / 1.15; border-radius: 200px 200px 10px 10px; display: block; object-fit: cover; width: 100%; }

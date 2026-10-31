@@ -31,18 +31,65 @@ function updateCountdown() {
 
 const track = document.querySelector("#carouselTrack");
 const cards = [...document.querySelectorAll(".memory-card")];
+const carousel = document.querySelector(".carousel");
+const previousButton = document.querySelector("#previous");
+const nextButton = document.querySelector("#next");
 let currentSlide = 0;
+let dragStartX = 0;
+let dragOffset = 0;
+let isDragging = false;
+
+function getCarouselOffset(slide) {
+  const cardWidth = cards[0].getBoundingClientRect().width + 22;
+  const requestedOffset = slide * cardWidth;
+  const maximumOffset = Math.max(0, track.scrollWidth - carousel.clientWidth);
+  return Math.min(requestedOffset, maximumOffset);
+}
+
+function updateCarousel() {
+  const offset = getCarouselOffset(currentSlide);
+  track.style.transform = `translate3d(${-offset}px, 0, 0)`;
+  previousButton.disabled = offset === 0;
+  nextButton.disabled = offset >= track.scrollWidth - carousel.clientWidth;
+}
 
 function moveCarousel(direction) {
   currentSlide = Math.max(0, Math.min(currentSlide + direction, cards.length - 1));
-  const cardWidth = cards[0].getBoundingClientRect().width + 22;
-  track.style.transform = `translateX(-${currentSlide * cardWidth}px)`;
+  updateCarousel();
 }
 
-document.querySelector("#previous").addEventListener("click", () => moveCarousel(-1));
-document.querySelector("#next").addEventListener("click", () => moveCarousel(1));
+function finishDrag() {
+  if (!isDragging) return;
+  isDragging = false;
+  track.style.transition = "";
+  if (Math.abs(dragOffset) > 50) moveCarousel(dragOffset < 0 ? 1 : -1);
+  else updateCarousel();
+  dragOffset = 0;
+}
+
+previousButton.addEventListener("click", () => moveCarousel(-1));
+nextButton.addEventListener("click", () => moveCarousel(1));
+track.addEventListener("pointerdown", (event) => {
+  if (event.pointerType === "mouse" && event.button !== 0) return;
+  isDragging = true;
+  dragStartX = event.clientX;
+  dragOffset = 0;
+  track.style.transition = "none";
+  track.setPointerCapture(event.pointerId);
+});
+track.addEventListener("pointermove", (event) => {
+  if (!isDragging) return;
+  dragOffset = event.clientX - dragStartX;
+  const baseOffset = getCarouselOffset(currentSlide);
+  const nextOffset = Math.max(0, Math.min(baseOffset - dragOffset, track.scrollWidth - carousel.clientWidth));
+  track.style.transform = `translate3d(${-nextOffset}px, 0, 0)`;
+});
+track.addEventListener("pointerup", finishDrag);
+track.addEventListener("pointercancel", finishDrag);
+window.addEventListener("resize", updateCarousel);
 updateCountdown();
 setInterval(updateCountdown, 1000);
+updateCarousel();
 
 function showBirthdayCelebration() {
   const celebration = document.querySelector("#birthdayCelebration");
