@@ -53,16 +53,9 @@ h1 em, h2 em { color: var(--coral); font-style: italic; }
 .countdown__date { margin: 0; }
 .memories-section { background: #fff; }
 .section-heading--row { align-items: end; display: flex; justify-content: space-between; max-width: 1180px; margin: auto; }
-.carousel-controls { display: flex; gap: 10px; }
-.carousel-button { align-items: center; appearance: none; background: transparent; border: 1px solid var(--line); border-radius: 50%; color: var(--plum); cursor: pointer; display: inline-flex; height: 44px; justify-content: center; line-height: 1; padding: 0; transition: background-color .2s, color .2s, opacity .2s; width: 44px; }
-.carousel-button:focus-visible:not(:disabled) { background: var(--plum); color: #fff; }
-.carousel-button:disabled { cursor: default; }
-@media (hover: hover) {
-  .carousel-button:hover:not(:disabled) { background: var(--plum); color: #fff; }
-}
-.carousel { margin: 60px auto 0; max-width: 1180px; overflow: hidden; }
-.carousel__track { display: flex; gap: 22px; touch-action: pan-y; transition: transform .32s cubic-bezier(.22, .61, .36, 1); will-change: transform; }
-.memory-card { flex: 0 0 min(38vw, 410px); margin-top: 40px; position: relative; }
+.carousel { -webkit-overflow-scrolling: touch; margin: 60px auto 0; max-width: 1180px; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; scroll-behavior: smooth; scroll-snap-type: x mandatory; scrollbar-color: var(--blush) transparent; scrollbar-width: thin; touch-action: pan-x; }
+.carousel__track { display: flex; gap: 22px; }
+.memory-card { flex: 0 0 min(38vw, 410px); margin-top: 40px; position: relative; scroll-snap-align: start; }
 .memory-card--tall { margin-top: 0; }
 .memory-card img { aspect-ratio: 1 / 1.15; border-radius: 200px 200px 10px 10px; display: block; object-fit: cover; width: 100%; }
 .memory-card:not(.memory-card--tall) img { border-radius: 10px 10px 200px 200px; }
@@ -104,7 +97,6 @@ h1 em, h2 em { color: var(--coral); font-style: italic; }
   .countdown__item strong { font-size: 2.5rem; }
   .countdown__item span { font-size: .5rem; letter-spacing: .04em; }
   .countdown__separator { font-size: 1.4rem; padding-bottom: 14px; }
-  .section-heading--row { align-items: start; flex-direction: column; gap: 25px; }
   .carousel { margin-top: 35px; }
   .memory-card { flex-basis: 78vw; }
   .photo-note { text-align: left; }
